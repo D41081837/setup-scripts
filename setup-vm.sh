@@ -10,7 +10,7 @@ cd ~/vms/CMS-Drupal-MKTG/
 
 VM_STATUS = VBoxManage guestproperty get "$VM_NAME" "/VirtualBox/GuestInfo/Net/0/Status"
 
-if [ ! -e "$VM_STATUS" == 'No value set!' ]; then
+if [[ ! -e "$VM_STATUS" == 'No value set!' ]]; then
   # Build the VM.
   cd ~/vms/CMS-Drupal-MKTG/
   vagrant up
