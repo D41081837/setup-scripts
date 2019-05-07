@@ -29,10 +29,11 @@ ssh-add ~/.ssh/"$MYPRIVATEKEY" 2> /dev/null
 
 echo -e "${BLUE}CLONING THE $MYDNUMBER/CMS-Drupal-MKTG REPOSITORY${NC}"
 git clone git@github.com:"$MYDNUMBER"/CMS-Drupal-MKTG.git
-cp ~/setup-scripts/setup-vm.sh ~/vms/CMS-Drupal-MKTG/scripts/setup-vm.sh 
-cp ~/setup-scripts/setup-sync.sh ~/vms/CMS-Drupal-MKTG/box/post_provision/setup-sync.sh 
+cp ~/setup-scripts/setup-sync.sh ~/vms/CMS-Drupal-MKTG/scripts/setup-sync.sh 
+cp ~/setup-scripts/bash_profile ~/vms/CMS-Drupal-MKTG/scripts/bash_profile 
 cp ~/setup-scripts/local.config.yml ~/vms/CMS-Drupal-MKTG/box/local.config.yml 
-sed -n 's/512M/4096M/g' ~/vms/CMS-Drupal-MKTG/box/local.config.yml
+cp ~/setup-scripts/post-provision.php ~/vms/CMS-Drupal-MKTG/box/post_provision/post-provision.php
+
 echo -e "${GREEN}$MYDNUMBER/CMS-Drupal-MKTG repository fork has been cloned.${NC}\n"
 sleep 3
 
@@ -66,13 +67,13 @@ sleep 3
 cd ~/vms/CMS-Drupal-MKTG/
 composer clearcache 2> /dev/null
 
-echo -e "LOCAL MKTG CODEBASE INSTALL\n"
+echo -e "${BLUE}LOCAL MKTG CODEBASE INSTALL${NC}"
 read -e -p "Would you like to install your local codebase? (y/N)" choice1
 [[ "$choice1" == [Yy]* ]] && composer install --prefer-dist || exit 0
 
 echo -e "${GREEN}Local codebase has been installed.${NC}"
 sleep 3
 
-echo -e "LOCAL ENVIRONMENT VM INSTALL\n"
+echo -e "${BLUE}LOCAL ENVIRONMENT VM INSTALL${NC}"
 read -e -p "Would you like to install your VM? (y/N)" choice2
 [[ "$choice2" == [Yy]* ]] && bash ~/setup-scripts/setup-vm.sh || exit 0
