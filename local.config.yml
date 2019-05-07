@@ -106,6 +106,7 @@ pre_provision_tasks_dir:
 
 post_provision_scripts:
   - "../../../acquia/blt/scripts/drupal-vm/post-provision.php"
+  - "../../../../box/post_provision/post-provision.yml"
 
 post_provision_tasks_dir:
   - "../../../../box/post_provision/post-provision.yml"
