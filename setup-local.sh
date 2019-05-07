@@ -45,7 +45,9 @@ sleep 3
 
 echo -e "${BLUE}INSTALLING VAGRANT PLUGINS${NC}"
 ulimit -n 10000 2> /dev/null
+vagrant plugin install vagrant-vbguest 2> /dev/null
 vagrant plugin install vagrant-hostsupdater 2> /dev/null
+vagrant plugin install vagrant-auto_network 2> /dev/null
 
 echo -e "${BLUE}\nINSTALLING COMPOSER${NC}"
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" 2> /dev/null
