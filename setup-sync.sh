@@ -33,7 +33,7 @@ echo -e "${BLUE}\nREFRESHING AND SYNCING LOCAL SITES${NC}"
   sleep 3
   
   # Open the dashboard in Chrome.
-  /bin/open http://dashboard.adtalem.com
+  /bin/open http://dashboard.adtalem.local
 
   # Remove the active bash_profile
   mv /home/vagrant/.bash_profile /home/vagrant/bash_profile
