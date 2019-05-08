@@ -25,7 +25,7 @@ rm -rf CMS-Drupal-MKTG
 
 set -e
 
-ssh-add ~/.ssh/"$MYPRIVATEKEY" 
+ssh-add ~/.ssh/"$MYPRIVATEKEY" 2> /dev/null
 
 echo -e "${BLUE}CLONING THE $MYDNUMBER/CMS-Drupal-MKTG REPOSITORY${NC}"
 git clone git@github.com:"$MYDNUMBER"/CMS-Drupal-MKTG.git
