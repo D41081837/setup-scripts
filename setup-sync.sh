@@ -25,7 +25,7 @@ if [ ! -e "$BASH PROFILE_FILE" ]; then
   bash scripts/refresh-local.sh
 
   # Open the dashboard in Chrome.
-  open -a "Google Chrome" http://dashboard.adtalem.com
+  /usr/bin/open http://dashboard.adtalem.com
 
   # Remove the active bash_profile
   mv /home/vagrant/.bash_profile /home/vagrant/bash_profile

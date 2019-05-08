@@ -18,6 +18,7 @@ echo -e "${BLUE}INSTALLING HOMEBREW...${NC}"
 xcode-select --install
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew install caskroom/cask/brew-cask
+brew install gnu-sed
 brew analytics off
 
 # install vagrant >=1.8.6 and virtualbox >=5.1.14
@@ -34,3 +35,9 @@ sudo easy_install pip
 sudo pip install ansible
 
 echo -e "${LIGHTBLUE}The required apps have been installed. "`date`"${NC}\n"
+
+# install local environment
+
+echo -e "${BLUE}LOCAL ENVIRONMENT SETUP${NC}"
+
+bash ~/setup-scripts/setup-local.sh
