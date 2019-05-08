@@ -25,14 +25,13 @@ rm -rf CMS-Drupal-MKTG
 
 set -e
 
-ssh-add ~/.ssh/"$MYPRIVATEKEY" 2> /dev/null
+ssh-add ~/.ssh/"$MYPRIVATEKEY" 
 
 echo -e "${BLUE}CLONING THE $MYDNUMBER/CMS-Drupal-MKTG REPOSITORY${NC}"
 git clone git@github.com:"$MYDNUMBER"/CMS-Drupal-MKTG.git
 cp ~/setup-scripts/setup-sync.sh ~/vms/CMS-Drupal-MKTG/scripts/setup-sync.sh 
 cp ~/setup-scripts/bash_profile ~/vms/CMS-Drupal-MKTG/scripts/bash_profile 
 cp ~/setup-scripts/local.config.yml ~/vms/CMS-Drupal-MKTG/box/local.config.yml 
-cp ~/setup-scripts/post-provision.php ~/vms/CMS-Drupal-MKTG/box/post_provision/post-provision.php
 
 echo -e "${GREEN}$MYDNUMBER/CMS-Drupal-MKTG repository fork has been cloned.${NC}\n"
 sleep 3
@@ -73,6 +72,7 @@ echo -e "${BLUE}LOCAL MKTG CODEBASE INSTALL${NC}"
 read -e -p "Would you like to install your local codebase? (y/N)" choice1
 [[ "$choice1" == [Yy]* ]] && composer install --prefer-dist || exit 0
 cp ~/setup-scripts/bash_profile ~/vms/CMS-Drupal-MKTG/vendor/acquia/blt/scripts/blt/bash_profile
+cp ~/setup-scripts/post-provision.php ~/vms/CMS-Drupal-MKTG/vendor/acquia/blt/scripts/drupal-vm/post-provision.php
 echo -e "${GREEN}Local codebase has been installed.${NC}"
 sleep 3
 
