@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-$bash_profile_file = '/home/vagrant/bash_profile';
+$bash_profile_old = '/home/vagrant/bash_profile';
 
 $bash_profile_locations = [
   "/vagrant/vendor/acquia/blt/scripts/blt/bash_profile",
@@ -11,20 +11,20 @@ $bash_profile_locations = [
 
 foreach ($bash_profile_locations  as $bash_profile_location) {
   if (file_exists($bash_profile_location)) {
-    $bashpro_file = "/home/vagrant/.bash_profile";
-    $bashpro_contents = file_get_contents($bashpro_file);
-    if (!strstr($bashpro_contents, "source")) {
+    $bash_profile_target = "/home/vagrant/.bash_profile";
+    $bash_target_contents = file_get_contents($bash_profile_target);
+    if (!strstr($bash_target_contents, "setup-sync.sh")) {
       $bash_profile_contents = file_get_contents($bash_profile_location);
       # Add blt alias to front of .bashpro so that it applies to non-interactive shells.
-      $new_bash_profile_contents = $bash_profile_contents . $bashpro_contents;
-      file_put_contents($bashpro_file, $new_bashpro_contents);
+      $new_bash_profile_contents = $bash_profile_contents . $bash_target_contents;
+      file_put_contents($bash_profile_target, $new_bash_profile_contents);
       break;
     }
   }
 }
 
-if (!isset($bashpro_file)) {
-  echo "Sync setup has already been completed.";
+if (!isset($bash_profile_target)) {
+  echo "No bash_profile config was found.";
   exit(1);
 }
 
