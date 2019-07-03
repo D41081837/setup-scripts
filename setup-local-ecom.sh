@@ -80,4 +80,4 @@ sleep 3
 
 echo -e "${BLUE}LOCAL ENVIRONMENT VM INSTALL${NC}"
 read -e -p "Would you like to install your VM? (y/N)" choice2
-[[ "$choice2" == [Yy]* ]] && bash ~/setup-scripts/setup-vm.sh || exit 0
+[[ "$choice2" == [Yy]* ]] && bash ~/setup-scripts/setup-vm-ecom.sh || exit 0
