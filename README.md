@@ -13,7 +13,7 @@ ssh-keygen -f ~/.ssh/adtalem_rsa -t rsa -b 4096 -C "your.email@adtalem.com" -N "
 2. Copy the public key to your clipboard so it can be added to your cloud accounts.
 
 ```js
-   pbcopy < ~/.ssh/adtalem_rsa.pub
+pbcopy < ~/.ssh/adtalem_rsa.pub
 ```
    
 3. Add it to both your ATGE Acquia Cloud account and your ATGE Github account.
