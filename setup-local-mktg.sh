@@ -34,7 +34,6 @@ ssh-add ~/.ssh/"$MYPRIVATEKEY" 2> /dev/null
 echo -e "${BLUE}CLONING THE $MYDNUMBER/CMS-Drupal-MKTG REPOSITORY${NC}"
 git clone git@github.com:"$MYDNUMBER"/CMS-Drupal-MKTG.git
 cp ~/setup-scripts/setup-sync-mktg.sh ~/vms/CMS-Drupal-MKTG/scripts/setup-sync.sh
-cp ~/setup-scripts/atge_access_token ~/vms/CMS-Drupal-MKTG/scripts/atge_access_token
 cp ~/setup-scripts/bash_profile_mktg ~/vms/CMS-Drupal-MKTG/scripts/bash_profile
 cp ~/setup-scripts/local.config-mktg.yml ~/vms/CMS-Drupal-MKTG/box/local.config.yml
 
