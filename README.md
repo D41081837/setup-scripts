@@ -25,9 +25,9 @@ ssh-keygen -f ~/.ssh/adtalem_rsa -t rsa -b 4096 -C "your.email@adtalem.com" -N "
    
 4. You must create a repository fork for each stack in your ATGE Github account.
 
-     ###### **CMS-Drupal-MKTG**
+     ###### **THE CMS-Drupal-MKTG STACK REPO**
    <a href="https://github.com/DeVryEducationGroup/CMS-Drupal-MKTG">https://github.com/DeVryEducationGroup/CMS-Drupal-MKTG</a>
-     ###### **CMS-Drupal-ECOM**  
+     ###### **THE CMS-Drupal-ECOM STACK REPO**  
    <a href="https://github.com/DeVryEducationGroup/CMS-Drupal-ECOM">https://github.com/DeVryEducationGroup/CMS-Drupal-ECOM</a>
    
 
