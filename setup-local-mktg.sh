@@ -10,7 +10,7 @@ BOLD='\033[1;0m'
 NC='\033[0m'
 
 echo -e "\n"
-echo -e "${BLUE}Installing CMS-Drupal-ECOM local environment: ${NC}"
+echo -e "${BLUE}Installing CMS-Drupal-MKTG local environment: ${NC}"
 echo -e "${LIGHTBLUE}Started: "`date`"${NC}\n"
 sleep 3
 
@@ -25,26 +25,26 @@ rm -rf ~/setup-scripts/atge_access_token
 SAVEDGITTOKEN='MYGITTOKEN="'$MYGITTOKEN'"'
 echo $SAVEDGITTOKEN >> ~/setup-scripts/atge_access_token
 
-rm -rf CMS-Drupal-ECOM
+rm -rf CMS-Drupal-MKTG
 
 set -e
 
 ssh-add ~/.ssh/"$MYPRIVATEKEY" 2> /dev/null
 
-echo -e "${BLUE}CLONING THE $MYDNUMBER/CMS-Drupal-ECOM REPOSITORY${NC}"
-git clone git@github.com:"$MYDNUMBER"/CMS-Drupal-ECOM.git
-cp ~/setup-scripts/setup-sync-ecom.sh ~/vms/CMS-Drupal-ECOM/scripts/setup-sync.sh
-cp ~/setup-scripts/atge_access_token ~/vms/CMS-Drupal-ECOM/scripts/atge_access_token
-cp ~/setup-scripts/bash_profile_ecom ~/vms/CMS-Drupal-ECOM/scripts/bash_profile
-cp ~/setup-scripts/local.config-ecom.yml ~/vms/CMS-Drupal-ECOM/box/local.config.yml 
+echo -e "${BLUE}CLONING THE $MYDNUMBER/CMS-Drupal-MKTG REPOSITORY${NC}"
+git clone git@github.com:"$MYDNUMBER"/CMS-Drupal-MKTG.git
+cp ~/setup-scripts/setup-sync-mktg.sh ~/vms/CMS-Drupal-MKTG/scripts/setup-sync.sh
+cp ~/setup-scripts/atge_access_token ~/vms/CMS-Drupal-MKTG/scripts/atge_access_token
+cp ~/setup-scripts/bash_profile_mktg ~/vms/CMS-Drupal-MKTG/scripts/bash_profile
+cp ~/setup-scripts/local.config-mktg.yml ~/vms/CMS-Drupal-MKTG/box/local.config.yml
 
-echo -e "${GREEN}$MYDNUMBER/CMS-Drupal-ECOM repository fork has been cloned.${NC}\n"
+echo -e "${GREEN}$MYDNUMBER/CMS-Drupal-MKTG repository fork has been cloned.${NC}\n"
 sleep 3
 
 echo -e "${BLUE}ADDING UPSTREAM REPOSITORY${NC}"
-cd ~/vms/CMS-Drupal-ECOM/
-git remote add upstream git@github.com:DeVryEducationGroup/CMS-Drupal-ECOM.git
-echo -e "${GREEN}DeVryEducationGroup/CMS-Drupal-ECOM has been added as an upstream repository.${NC}\n"
+cd ~/vms/CMS-Drupal-MKTG/
+git remote add upstream git@github.com:DeVryEducationGroup/CMS-Drupal-MKTG.git
+echo -e "${GREEN}DeVryEducationGroup/CMS-Drupal-MKTG has been added as an upstream repository.${NC}\n"
 sleep 3
 
 echo -e "${BLUE}INSTALLING VAGRANT PLUGINS${NC}"
@@ -58,31 +58,31 @@ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" 2> /de
 php -r "if (hash_file('sha384', 'composer-setup.php') === '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5') { echo ''; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" 2> /dev/null
 php composer-setup.php --filename=composer 2> /dev/null
 php -r "unlink('composer-setup.php');" 2> /dev/null
-mkdir ~/vms/CMS-Drupal-ECOM/vendor
-mkdir ~/vms/CMS-Drupal-ECOM/vendor/bin
-mv composer ~/vms/CMS-Drupal-ECOM/vendor/bin/
+mkdir ~/vms/CMS-Drupal-MKTG/vendor
+mkdir ~/vms/CMS-Drupal-MKTG/vendor/bin
+mv composer ~/vms/CMS-Drupal-MKTG/vendor/bin/
 cd /usr/local/bin
 rm -rf composer
-ln -s ~/vms/CMS-Drupal-ECOM/vendor/bin/composer composer
+ln -s ~/vms/CMS-Drupal-MKTG/vendor/bin/composer composer
 
 echo -e "${BLUE}\nADDING GITHUB ACCESS TOKEN${NC}"
 composer config -g github-oauth.github.com "$MYGITTOKEN"
 echo -e "${GREEN}Your Github access token has been added to the codebase.${NC}\n"
 sleep 3
 
-cd ~/vms/CMS-Drupal-ECOM/
+cd ~/vms/CMS-Drupal-MKTG/
 composer clearcache 2> /dev/null
 
-echo -e "${BLUE}LOCAL ECOM CODEBASE INSTALL${NC}"
+echo -e "${BLUE}LOCAL MKTG CODEBASE INSTALL${NC}"
 read -e -p "Would you like to install your local codebase? (y/N)" choice1
 [[ "$choice1" == [Yy]* ]] && composer install --prefer-dist || exit 0
-cp ~/setup-scripts/atge_access_token ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/blt/atge_access_token
-cp ~/setup-scripts/bash_profile_ecom ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/blt/bash_profile
-cp ~/setup-scripts/post-provision-ecom.php ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/drupal-vm/post-provision.php
+cp ~/setup-scripts/atge_access_token ~/vms/CMS-Drupal-MKTG/vendor/acquia/blt/scripts/blt/atge_access_token
+cp ~/setup-scripts/bash_profile_mktg ~/vms/CMS-Drupal-MKTG/vendor/acquia/blt/scripts/blt/bash_profile
+cp ~/setup-scripts/post-provision-mktg.php ~/vms/CMS-Drupal-MKTG/vendor/acquia/blt/scripts/drupal-vm/post-provision.php
 
 echo -e "${GREEN}Local codebase has been installed.${NC}"
 sleep 3
 
 echo -e "${BLUE}LOCAL ENVIRONMENT VM INSTALL${NC}"
 read -e -p "Would you like to install your VM? (y/N)" choice2
-[[ "$choice2" == [Yy]* ]] && bash ~/setup-scripts/setup-vm-ecom.sh || exit 0
+[[ "$choice2" == [Yy]* ]] && bash ~/setup-scripts/setup-vm-mktg.sh || exit 0

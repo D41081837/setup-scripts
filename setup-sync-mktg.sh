@@ -4,7 +4,8 @@
 #
 # This script adds some VM configuration and syncs the sites.
 
-BASH PROFILE_FILE=/home/vagrant/bash_profile
+BASH_PROFILE_FILE=/home/vagrant/bash_profile
+ACCESS_TOKEN_FILE=/home/vagrant/.atge_access_token
 
 YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
@@ -16,24 +17,26 @@ BOLD='\033[1;0m'
 NC='\033[0m'
 
 # Check to see if we've already performed this setup.
-if [ ! -e "$BASH PROFILE_FILE" ]; then
+if [ ! -e "$BASH_PROFILE_FILE" ]; then
   # Have the user enter their Github token.
-read -p "$(echo -e $LIGHTERBLUE"Enter your ATGE Github access token "$NC"(from https://github.com/settings/tokens): ")" MYGITTOKEN  
-
+  # read -p "$(echo -e $LIGHTERBLUE"Enter your ATGE Github access token "$NC"(from https://github.com/settings/tokens): ")" MYGITTOKEN
+if [ -e "$ACCESS_TOKEN_FILE" ]; then
+source ~/.atge_access_token
 echo -e "${BLUE}\nADDING GITHUB ACCESS TOKEN TO VM${NC}"
   # Add the user's Github token.
   composer config -g github-oauth.github.com "$MYGITTOKEN"
   echo -e "${GREEN}Your Github access token has been added to the VM.${NC}"
   sleep 3
-
+fi
 echo -e "${BLUE}\nREFRESHING AND SYNCING LOCAL SITES${NC}"
+  blt adtalem:sync
   # Run the refresh script.
   bash scripts/refresh-local.sh
   echo -e "${GREEN}The sites have been synced.${NC}"
   sleep 3
   
   # Open the dashboard in Chrome.
-  /bin/open http://dashboard.adtalem.local
+   /bin/open http://dashboard.adtalem.local
 
   # Remove the active bash_profile
   mv /home/vagrant/.bash_profile /home/vagrant/bash_profile

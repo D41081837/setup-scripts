@@ -9,35 +9,45 @@ GRAY='\033[1;231m'
 BOLD='\033[1;0m'
 NC='\033[0m'
 
-echo -e "${BLUE}Installing required local development apps: "`date`"${NC}\n"
-
-# install Homebrew
-
+# Install Homebrew
+if ! brew_loc="$(type -p "brew")" || [[ -z $brew_loc ]]; then
 echo -e "${BLUE}INSTALLING HOMEBREW...${NC}"
-
 xcode-select --install
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew install caskroom/cask/brew-cask
-brew install gnu-sed
-brew analytics off
+brew install caskroom/cask/brew-cask 2> /dev/null
+brew install gnu-sed 2> /dev/null
+brew analytics off 2> /dev/null
+fi
+echo -e "\n"
+echo -e "${GREEN}Homebrew is installed. ${NC}"
 
-# install vagrant >=1.8.6 and virtualbox >=5.1.14
+# Install Virtualbox >=5.1.14
+if ! vb_loc="$(type -p "VBoxmanage")" || [[ -z $vb_loc ]]; then
 echo -e "${BLUE}INSTALLING VIRTUALBOX...${NC}"
-brew cask install virtualbox
+brew cask install virtualbox 2> /dev/null
+fi
+echo -e "${GREEN}Virtualbox is installed.${NC}"
+
+# Install Vagrant >=1.8.6
+if ! vagrant_loc="$(type -p "vagrant")" || [[ -z $vagrant_loc ]]; then
 echo -e "${BLUE}INSTALLING VAGRANT...${NC}"
-brew cask install vagrant
+brew cask install vagrant 2> /dev/null
+fi
+echo -e "${GREEN}Vagrant is installed. ${NC}"
 
-# install ansible
+# Install PIP
+if ! pip_loc="$(type -p "pip")" || [[ -z $pip_loc ]]; then
+echo -e "${BLUE}INSTALLING PIP...${NC}"
+sudo easy_install pip 2> /dev/null
+echo -e "${GREEN}Pip has been installed.${NC}"
+fi
 
-echo -e "${BLUE}INSTALLING ANSIBLE...${NC}"
+# Install Ansible
+if ! ansible_loc="$(type -p "ansible")" || [[ -z $ansible_loc ]]; then
+sudo pip install ansible 2> /dev/null
+fi
+echo -e "${GREEN}Ansible is installed.${NC}\n"
 
-sudo easy_install pip
-sudo pip install ansible
-
-echo -e "${LIGHTBLUE}The required apps have been installed. "`date`"${NC}\n"
-
-# install local environment
-
-echo -e "${BLUE}LOCAL ENVIRONMENT SETUP${NC}"
-
-bash ~/setup-scripts/setup-local.sh
+# Install local environment
+echo -e "${LIGHTBLUE}All required applications been installed. ${NC}"
+bash ~/setup-scripts/setup-stack.sh
