@@ -29,6 +29,7 @@ echo -e "${BLUE}\nADDING GITHUB ACCESS TOKEN TO VM${NC}"
   sleep 3
 fi
 echo -e "${BLUE}\nREFRESHING AND SYNCING LOCAL SITES${NC}"
+  blt adtalem:sync
   # Run the refresh script.
   bash scripts/refresh-local.sh
   echo -e "${GREEN}The sites have been synced.${NC}"

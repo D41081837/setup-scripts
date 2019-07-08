@@ -1,4 +1,4 @@
-# Setup Scripts
+# ATGE CMS-Drupal Setup Scripts
 
 Scripts that setup a local development environment on Mac OSX for of Adtalem Global Education's Drupal CMS projects.
 
