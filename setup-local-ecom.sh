@@ -29,7 +29,6 @@ ssh-add ~/.ssh/"$MYPRIVATEKEY" 2> /dev/null
 
 echo -e "${BLUE}CLONING THE $MYDNUMBER/CMS-Drupal-ECOM REPOSITORY${NC}"
 git clone git@github.com:"$MYDNUMBER"/CMS-Drupal-ECOM.git
-cp ~/setup-scripts/setup-sync-ecom.sh ~/vms/CMS-Drupal-ECOM/scripts/setup-sync.sh 
 cp ~/setup-scripts/bash_profile_ecom ~/vms/CMS-Drupal-ECOM/scripts/bash_profile 
 cp ~/setup-scripts/local.config-ecom.yml ~/vms/CMS-Drupal-ECOM/box/local.config.yml 
 

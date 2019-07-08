@@ -1,3 +1,3 @@
 source ~/.profile
 
-bash /var/www/adtalem-ecom/scripts/setup-sync-ecom.sh
+bash /var/www/adtalem-ecom/scripts/setup-sync.sh
