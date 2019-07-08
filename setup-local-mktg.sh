@@ -16,7 +16,7 @@ sleep 3
 
 mkdir ~/vms 2> /dev/null
 cd ~/vms/
-read -p "$(echo -e $LIGHTERBLUE"Enter the name of your Acquia/Github private key "$NC"(ex. id_rsa): ")" MYPRIVATEKEY
+read -p "$(echo -e $LIGHTERBLUE"Enter the name of your Acquia/Github private key "$NC"(ex. adtalem_rsa): ")" MYPRIVATEKEY
 read -p "$(echo -e $LIGHTERBLUE"Enter your ATGE Github username "$NC"(ex. D********): ")"  MYDNUMBER
 read -p "$(echo -e $LIGHTERBLUE"Enter your ATGE Github access token "$NC"(from https://github.com/settings/tokens): ")" MYGITTOKEN
 echo -e "\n"
