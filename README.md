@@ -9,14 +9,21 @@ Scripts that setup a local development environment on Mac OSX for of Adtalem Glo
 ```js
 ssh-keygen -f ~/.ssh/adtalem_rsa -t rsa -b 4096 -C "your.email@adtalem.com" -N ""
 ```
-2. You must copy the public key to your clipboard and add it to both your ATGE Acquia Cloud account and your ATGE Github account.
 
-     ###### **ACQUIA CLOUD**
+2. Copy the public key to your clipboard so it can be added to your cloud accounts.
+
+```js
+   pbcopy < ~/.ssh/adtalem_rsa.pub
+```
+   
+3. Add it to both your ATGE Acquia Cloud account and your ATGE Github account.
+
+     ###### **ADD AN ACQUIA CLOUD KEY**
    <a href="https://cloud.acquia.com/a/profile/ssh-keys">https://cloud.acquia.com/a/profile/ssh-keys</a>
-     ###### **GITHUB** 
+     ###### **ADD A GITHUB KEY** 
    <a href="https://github.com/settings/keys">https://github.com/settings/keys</a>
    
-3. You must create a repository fork for each stack in your ATGE Github account.
+4. You must create a repository fork for each stack in your ATGE Github account.
 
      ###### **CMS-Drupal-MKTG**
    <a href="https://github.com/DeVryEducationGroup/CMS-Drupal-MKTG">https://github.com/DeVryEducationGroup/CMS-Drupal-MKTG</a>
