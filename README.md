@@ -13,16 +13,16 @@ ssh-keygen -f ~/.ssh/adtalem_rsa -t rsa -b 4096 -C "your.email@adtalem.com" -N "
 ```js
    pbcopy < ~/.ssh/adtalem_rsa.pub
 ```
-###### ACQUIA CLOUD
+     ###### **ACQUIA CLOUD**
    <a href="https://cloud.acquia.com/a/profile/ssh-keys">https://cloud.acquia.com/a/profile/ssh-keys</a>
-###### GITHUB  
+     ###### **GITHUB** 
    <a href="https://github.com/settings/keys">https://github.com/settings/keys</a>
    
 3. You must create a repository fork for each stack in your ATGE Github account.
 
-###### CMS-Drupal-MKTG
+     ###### **CMS-Drupal-MKTG**
    <a href="https://github.com/DeVryEducationGroup/CMS-Drupal-MKTG">https://github.com/DeVryEducationGroup/CMS-Drupal-MKTG</a>
-###### CMS-Drupal-ECOM  
+     ###### **CMS-Drupal-ECOM**  
    <a href="https://github.com/DeVryEducationGroup/CMS-Drupal-ECOM">https://github.com/DeVryEducationGroup/CMS-Drupal-ECOM</a>
    
 
