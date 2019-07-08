@@ -1,3 +1,4 @@
 source ~/.profile
+source gitaccesstoken.txt
 
 bash /var/www/adtalem-ecom/scripts/setup-sync.sh

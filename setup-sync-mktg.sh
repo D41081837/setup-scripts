@@ -4,7 +4,7 @@
 #
 # This script adds some VM configuration and syncs the sites.
 
-BASH PROFILE_FILE=/home/vagrant/bash_profile
+BASH_PROFILE_FILE=/home/vagrant/bash_profile
 
 YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
@@ -16,9 +16,9 @@ BOLD='\033[1;0m'
 NC='\033[0m'
 
 # Check to see if we've already performed this setup.
-if [ ! -e "$BASH PROFILE_FILE" ]; then
+if [ ! -e "$BASH_PROFILE_FILE" ]; then
   # Have the user enter their Github token.
-read -p "$(echo -e $LIGHTERBLUE"Enter your ATGE Github access token "$NC"(from https://github.com/settings/tokens): ")" MYGITTOKEN  
+  # read -p "$(echo -e $LIGHTERBLUE"Enter your ATGE Github access token "$NC"(from https://github.com/settings/tokens): ")" MYGITTOKEN
 
 echo -e "${BLUE}\nADDING GITHUB ACCESS TOKEN TO VM${NC}"
   # Add the user's Github token.
@@ -33,7 +33,7 @@ echo -e "${BLUE}\nREFRESHING AND SYNCING LOCAL SITES${NC}"
   sleep 3
   
   # Open the dashboard in Chrome.
-  /bin/open http://dashboard.adtalem.local
+   /bin/open http://dashboard.adtalem.local
 
   # Remove the active bash_profile
   mv /home/vagrant/.bash_profile /home/vagrant/bash_profile

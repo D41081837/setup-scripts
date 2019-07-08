@@ -40,4 +40,4 @@ echo -e "${LIGHTBLUE}The required apps have been installed. "`date`"${NC}\n"
 
 echo -e "${BLUE}LOCAL ENVIRONMENT SETUP${NC}"
 
-bash ~/setup-scripts/setup-local.sh
+bash ~/setup-scripts/setup-stack.sh
