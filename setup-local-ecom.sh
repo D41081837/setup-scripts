@@ -21,8 +21,9 @@ read -p "$(echo -e $LIGHTERBLUE"Enter your ATGE Github username "$NC"(ex. D*****
 read -p "$(echo -e $LIGHTERBLUE"Enter your ATGE Github access token "$NC"(from https://github.com/settings/tokens): ")" MYGITTOKEN
 echo -e "\n"
 
-SAVEDGITTOKEN='MYGITTOKEN=\"'$MYGITTOKEN'\"'
-echo SAVEDGITTOKEN >> gitaccesstoken.txt
+rm -rf ~/setup-scripts/atge_access_token
+SAVEDGITTOKEN='MYGITTOKEN="'$MYGITTOKEN'"'
+echo $SAVEDGITTOKEN >> ~/setup-scripts/atge_access_token
 
 rm -rf CMS-Drupal-ECOM
 
@@ -32,8 +33,9 @@ ssh-add ~/.ssh/"$MYPRIVATEKEY" 2> /dev/null
 
 echo -e "${BLUE}CLONING THE $MYDNUMBER/CMS-Drupal-ECOM REPOSITORY${NC}"
 git clone git@github.com:"$MYDNUMBER"/CMS-Drupal-ECOM.git
-cp ~/setup-scripts/setup-sync-mktg.sh ~/vms/CMS-Drupal-MKTG/scripts/setup-sync.sh
-cp ~/setup-scripts/bash_profile_ecom ~/vms/CMS-Drupal-ECOM/scripts/bash_profile 
+cp ~/setup-scripts/setup-sync-ecom.sh ~/vms/CMS-Drupal-ECOM/scripts/setup-sync.sh
+cp ~/setup-scripts/atge_access_token ~/vms/CMS-Drupal-ECOM/scripts/atge_access_token
+cp ~/setup-scripts/bash_profile_ecom ~/vms/CMS-Drupal-ECOM/scripts/bash_profile
 cp ~/setup-scripts/local.config-ecom.yml ~/vms/CMS-Drupal-ECOM/box/local.config.yml 
 
 echo -e "${GREEN}$MYDNUMBER/CMS-Drupal-ECOM repository fork has been cloned.${NC}\n"
@@ -74,6 +76,7 @@ composer clearcache 2> /dev/null
 echo -e "${BLUE}LOCAL ECOM CODEBASE INSTALL${NC}"
 read -e -p "Would you like to install your local codebase? (y/N)" choice1
 [[ "$choice1" == [Yy]* ]] && composer install --prefer-dist || exit 0
+cp ~/setup-scripts/atge_access_token ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/blt/atge_access_token
 cp ~/setup-scripts/bash_profile_ecom ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/blt/bash_profile
 cp ~/setup-scripts/post-provision-ecom.php ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/drupal-vm/post-provision.php
 

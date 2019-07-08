@@ -21,8 +21,9 @@ read -p "$(echo -e $LIGHTERBLUE"Enter your ATGE Github username "$NC"(ex. D*****
 read -p "$(echo -e $LIGHTERBLUE"Enter your ATGE Github access token "$NC"(from https://github.com/settings/tokens): ")" MYGITTOKEN
 echo -e "\n"
 
-SAVEDGITTOKEN='MYGITTOKEN=\"'$MYGITTOKEN'\"'
-echo SAVEDGITTOKEN >> gitaccesstoken.txt
+rm -rf ~/setup-scripts/atge_access_token
+SAVEDGITTOKEN='MYGITTOKEN="'$MYGITTOKEN'"'
+echo $SAVEDGITTOKEN >> ~/setup-scripts/atge_access_token
 
 rm -rf CMS-Drupal-MKTG
 
@@ -33,6 +34,7 @@ ssh-add ~/.ssh/"$MYPRIVATEKEY" 2> /dev/null
 echo -e "${BLUE}CLONING THE $MYDNUMBER/CMS-Drupal-MKTG REPOSITORY${NC}"
 git clone git@github.com:"$MYDNUMBER"/CMS-Drupal-MKTG.git
 cp ~/setup-scripts/setup-sync-mktg.sh ~/vms/CMS-Drupal-MKTG/scripts/setup-sync.sh
+cp ~/setup-scripts/atge_access_token ~/vms/CMS-Drupal-MKTG/scripts/atge_access_token
 cp ~/setup-scripts/bash_profile_mktg ~/vms/CMS-Drupal-MKTG/scripts/bash_profile
 cp ~/setup-scripts/local.config-mktg.yml ~/vms/CMS-Drupal-MKTG/box/local.config.yml
 
@@ -74,6 +76,7 @@ composer clearcache 2> /dev/null
 echo -e "${BLUE}LOCAL MKTG CODEBASE INSTALL${NC}"
 read -e -p "Would you like to install your local codebase? (y/N)" choice1
 [[ "$choice1" == [Yy]* ]] && composer install --prefer-dist || exit 0
+cp ~/setup-scripts/atge_access_token ~/vms/CMS-Drupal-MKTG/vendor/acquia/blt/scripts/blt/atge_access_token
 cp ~/setup-scripts/bash_profile_mktg ~/vms/CMS-Drupal-MKTG/vendor/acquia/blt/scripts/blt/bash_profile
 cp ~/setup-scripts/post-provision-mktg.php ~/vms/CMS-Drupal-MKTG/vendor/acquia/blt/scripts/drupal-vm/post-provision.php
 

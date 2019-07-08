@@ -10,13 +10,9 @@ BOLD='\033[1;0m'
 NC='\033[0m'
 
 echo -e "\n"
-echo -e "${BLUE}ATGE Local Development Environment Setup v1.1${NC}"
-echo -e "${LIGHTBLUE}Started: "`date`"${NC}\n"
-sleep 1
-
 echo -e "${LIGHTERBLUE}SELECT AN ATGE DEVELOPMENT STACK:${NC}"
 
 select stack in MKTG ECOM
 do
-    bash ~/setup-scripts/setup-local-$stack.sh
+    bash ~/setup-scripts/setup-local-$stack.sh;
 done
