@@ -2,7 +2,6 @@
 
 Scripts that setup a local development environment on Mac OSX for of Adtalem Global Education's Drupal CMS projects.
 
-
 ## Pre-requisites
 
 1. You must generate an SSH key pair that will be used for these projects only. (RSA, 4096)
@@ -29,7 +28,6 @@ pbcopy < ~/.ssh/adtalem_rsa.pub
    <a href="https://github.com/DeVryEducationGroup/CMS-Drupal-MKTG">https://github.com/DeVryEducationGroup/CMS-Drupal-MKTG</a>
      ###### **THE CMS-Drupal-ECOM STACK REPO**  
    <a href="https://github.com/DeVryEducationGroup/CMS-Drupal-ECOM">https://github.com/DeVryEducationGroup/CMS-Drupal-ECOM</a>
-   
 
 ## Installation
 
