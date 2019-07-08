@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the VM name.
-VM_NAME=becker.local
+VM_NAME=adtalem-ecom.local
 
 # Remove existing VM files.
 vboxmanage list runningvms | gsed -r 's/.*\{(.*)\}/\1/' | xargs -L1 -I {} VBoxManage controlvm {} savestate 2> /dev/null

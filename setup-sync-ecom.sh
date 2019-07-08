@@ -28,12 +28,12 @@ echo -e "${BLUE}\nADDING GITHUB ACCESS TOKEN TO VM${NC}"
 
 echo -e "${BLUE}\nREFRESHING AND SYNCING LOCAL SITES${NC}"
   # Run the refresh script.
-  bash scripts/refresh-local-ecom.sh
+  bash scripts/refresh-local.sh
   echo -e "${GREEN}The sites have been synced.${NC}"
   sleep 3
   
   # Open the dashboard in Chrome.
-  /bin/open http://dashboard.becker.local
+  /bin/open http://dashboard.adtalem-ecom.local
 
   # Remove the active bash_profile
   mv /home/vagrant/.bash_profile /home/vagrant/bash_profile

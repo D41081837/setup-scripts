@@ -29,9 +29,9 @@ ssh-add ~/.ssh/"$MYPRIVATEKEY" 2> /dev/null
 
 echo -e "${BLUE}CLONING THE $MYDNUMBER/CMS-Drupal-ECOM REPOSITORY${NC}"
 git clone git@github.com:"$MYDNUMBER"/CMS-Drupal-ECOM.git
-cp ~/setup-scripts/setup-sync.sh ~/vms/CMS-Drupal-ECOM/scripts/setup-sync.sh 
-cp ~/setup-scripts/bash_profile ~/vms/CMS-Drupal-ECOM/scripts/bash_profile 
-cp ~/setup-scripts/local.config.yml ~/vms/CMS-Drupal-ECOM/box/local.config.yml 
+cp ~/setup-scripts/setup-sync-ecom.sh ~/vms/CMS-Drupal-ECOM/scripts/setup-sync.sh 
+cp ~/setup-scripts/bash_profile_ecom ~/vms/CMS-Drupal-ECOM/scripts/bash_profile 
+cp ~/setup-scripts/local.config-ecom.yml ~/vms/CMS-Drupal-ECOM/box/local.config.yml 
 
 echo -e "${GREEN}$MYDNUMBER/CMS-Drupal-ECOM repository fork has been cloned.${NC}\n"
 sleep 3
@@ -73,7 +73,7 @@ read -e -p "Would you like to install your local codebase? (y/N)" choice1
 [[ "$choice1" == [Yy]* ]] && composer install --prefer-dist || exit 0
 cp ~/setup-scripts/bash_profile_ecom ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/blt/bash_profile
 cp ~/setup-scripts/post-provision.php ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/drupal-vm/post-provision.php
-cp ~/setup-scripts/refresh-template.sh ~/vms/CMS-Drupal-ECOM/scripts/refresh-template.sh
+cp ~/setup-scripts/refresh-becker.sh ~/vms/CMS-Drupal-ECOM/scripts/refresh-becker.sh
 
 echo -e "${GREEN}Local codebase has been installed.${NC}"
 sleep 3
