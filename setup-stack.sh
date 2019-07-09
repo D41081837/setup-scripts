@@ -14,9 +14,12 @@ echo -e "${LIGHTERBLUE}SELECT AN ATGE DEVELOPMENT STACK:${NC}"
 
 rm -rf ~/setup-scripts/atge_vars
 
-select stack in MKTG ECOM
-do
+options=("CMS-Drupal-MKTG" "CMS-Drupal-ECOM")
+select stack in "${options[@]}"; do
     SAVEDSTACK='MYSTACK="'$stack'"'
     echo $SAVEDSTACK >> ~/setup-scripts/atge_vars;
-    bash ~/setup-scripts/setup-switch.sh;
+  case "$stack,$REPLY" in
+    CMS-Drupal-MKTG,*|*,CMS-Drupal-MKTG)     bash ~/setup-scripts/setup-local-mktg.sh; break ;;
+    CMS-Drupal-ECOM,*|*,CMS-Drupal-ECOM)     bash ~/setup-scripts/setup-local-ecom.sh; break ;;
+  esac
 done
