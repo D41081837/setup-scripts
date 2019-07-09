@@ -21,9 +21,8 @@ read -p "$(echo -e $LIGHTERBLUE"Enter your ATGE Github username "$NC"(ex. D*****
 read -p "$(echo -e $LIGHTERBLUE"Enter your ATGE Github access token "$NC"(from https://github.com/settings/tokens): ")" MYGITTOKEN
 echo -e "\n"
 
-rm -rf ~/setup-scripts/atge_access_token
 SAVEDGITTOKEN='MYGITTOKEN="'$MYGITTOKEN'"'
-echo $SAVEDGITTOKEN >> ~/setup-scripts/atge_access_token
+echo $SAVEDGITTOKEN >> ~/setup-scripts/atge_vars
 
 rm -rf CMS-Drupal-MKTG
 
@@ -75,7 +74,7 @@ composer clearcache 2> /dev/null
 echo -e "${BLUE}LOCAL MKTG CODEBASE INSTALL${NC}"
 read -e -p "Would you like to install your local codebase? (y/N)" choice1
 [[ "$choice1" == [Yy]* ]] && composer install --prefer-dist || exit 0
-cp ~/setup-scripts/atge_access_token ~/vms/CMS-Drupal-MKTG/vendor/acquia/blt/scripts/blt/atge_access_token
+cp ~/setup-scripts/atge_vars ~/vms/CMS-Drupal-MKTG/vendor/acquia/blt/scripts/blt/atge_vars
 cp ~/setup-scripts/bash_profile_mktg ~/vms/CMS-Drupal-MKTG/vendor/acquia/blt/scripts/blt/bash_profile
 cp ~/setup-scripts/post-provision-mktg.php ~/vms/CMS-Drupal-MKTG/vendor/acquia/blt/scripts/drupal-vm/post-provision.php
 

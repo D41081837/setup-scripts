@@ -1,4 +1,4 @@
 source ~/.profile
-source ~/.atge_access_token
+source ~/.atge_vars
 
 bash /var/www/adtalem/scripts/setup-sync.sh

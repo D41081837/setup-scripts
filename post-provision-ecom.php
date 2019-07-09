@@ -1,17 +1,17 @@
 #!/usr/bin/env php
 <?php
 
-$atge_access_token_old = '/home/vagrant/atge_access_token';
+$atge_access_token_old = '/home/vagrant/atge_vars';
 
 $atge_access_token_locations = [
-  "/vagrant/vendor/acquia/blt/scripts/blt/atge_access_token",
+  "/vagrant/vendor/acquia/blt/scripts/blt/atge_vars",
   // This is the location during "release:test" execution.
-  "/var/www/blt/scripts/blt/atge_access_token",
+  "/var/www/blt/scripts/blt/atge_vars",
 ];
 
 foreach ($atge_access_token_locations  as $atge_access_token_location) {
   if (file_exists($atge_access_token_location)) {
-    $atge_access_token_target = "/home/vagrant/.atge_access_token";
+    $atge_access_token_target = "/home/vagrant/.atge_vars";
     $atge_access_target_contents = file_get_contents($atge_access_token_target);
     if (file_exists($atge_access_token_location)) {
       $atge_access_token_contents = file_get_contents($atge_access_token_location);
