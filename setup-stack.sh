@@ -17,8 +17,6 @@ rm -rf ~/setup-scripts/atge_vars
 select stack in MKTG ECOM
 do
     SAVEDSTACK='MYSTACK="'$stack'"'
-    echo $SAVEDSTACK >> ~/setup-scripts/atge_vars
+    echo $SAVEDSTACK >> ~/setup-scripts/atge_vars;
+    bash ~/setup-scripts/setup-switch.sh;
 done
-
-source ~/setup-scripts/atge_vars
-bash ~/setup-scripts/setup-local-$MYSTACK.sh
