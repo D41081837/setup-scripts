@@ -12,7 +12,13 @@ NC='\033[0m'
 echo -e "\n"
 echo -e "${LIGHTERBLUE}SELECT AN ATGE DEVELOPMENT STACK:${NC}"
 
+rm -rf ~/setup-scripts/atge_vars
+
 select stack in MKTG ECOM
 do
-    bash ~/setup-scripts/setup-local-$stack.sh;
+    SAVEDSTACK='MYSTACK="'$stack'"'
+    echo $SAVEDSTACK >> ~/setup-scripts/atge_vars
 done
+
+source ~/setup-scripts/atge_vars
+bash ~/setup-scripts/setup-local-$MYSTACK.sh
