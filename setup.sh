@@ -1,4 +1,5 @@
 #!/bin/bash
+cp ~/setup-scripts/Setup\ Local\ Environment.command ~/Desktop/Setup\ Local\ Environment
 
 YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
