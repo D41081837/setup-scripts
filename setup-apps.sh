@@ -9,6 +9,10 @@ GRAY='\033[1;231m'
 BOLD='\033[1;0m'
 NC='\033[0m'
 
+echo -e "\n"
+read -p "Would you like to check for Homebrew, Virtualbox, Vagrant, and Ansible installations? (y/N)" choice1
+[[ "$choice1" == [Yy]* ]] && sleep 2 || bash ~/setup-scripts/setup-stack.sh
+
 # Install Homebrew
 if ! brew_loc="$(type -p "brew")" || [[ -z $brew_loc ]]; then
 echo -e "${BLUE}INSTALLING HOMEBREW...${NC}"

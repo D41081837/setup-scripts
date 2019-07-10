@@ -1,3 +1,3 @@
 #!/bin/bash
 
-bash ~/setup-scripts/setup.sh
+bash ~/setup-scripts/setup-switch.sh

@@ -36,8 +36,8 @@ echo -e "${BLUE}\nREFRESHING AND SYNCING LOCAL SITES${NC}"
   echo -e "${GREEN}The sites have been synced.${NC}"
   sleep 3
   
-  # Open the dashboard in Chrome.
-   /bin/open http://dashboard.adtalem-ecom.local
+  # Open the dashboard in Safari.
+   open -a safari http://dashboard.adtalem-ecom.local
 
   # Remove the active bash_profile
   mv /home/vagrant/.bash_profile /home/vagrant/bash_profile
