@@ -10,15 +10,18 @@ BOLD='\033[1;0m'
 NC='\033[0m'
 
 echo -e "\n"
-echo -e "${LIGHTERBLUE}SELECT AN ATGE DEVELOPMENT STACK:${NC}"
+echo -e "${BLUE}ATGE Local Development Setup for Mac v1.2${NC}"
+echo -e "${LIGHTBLUE}Started: "`date`"${NC}\n"
 sleep 1
 
-options=("CMS-Drupal-MKTG" "CMS-Drupal-ECOM")
+
+options=("CMS-Drupal-MKTG" "CMS-Drupal-ECOM" "Check-Required-Apps")
 select stack in "${options[@]}"; do
     SAVEDSTACK='MYSTACK="'$stack'"'
     echo $SAVEDSTACK >> ~/setup-scripts/.setup_vars;
   case "$stack,$REPLY" in
     CMS-Drupal-MKTG,*|*,CMS-Drupal-MKTG)     bash ~/setup-scripts/setup-local-mktg.sh; break ;;
     CMS-Drupal-ECOM,*|*,CMS-Drupal-ECOM)     bash ~/setup-scripts/setup-local-ecom.sh; break ;;
+    Check-Required-Apps,*|*,Check-Required-Apps)     bash ~/setup-scripts/setup-apps.sh; break ;;
   esac
 done

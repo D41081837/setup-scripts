@@ -71,9 +71,8 @@ sleep 3
 cd ~/vms/CMS-Drupal-ECOM/
 composer clearcache 2> /dev/null
 
-echo -e "${BLUE}LOCAL ECOM CODEBASE INSTALL${NC}"
-read -e -p "Would you like to install your local codebase? (y/N)" choice1
-[[ "$choice1" == [Yy]* ]] && composer install --prefer-dist || exit 0
+echo -e "${BLUE}INSTALLING LOCAL ECOM CODEBASE${NC}"
+
 cp ~/setup-scripts/.setup_vars ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/blt/setup_vars
 cp ~/setup-scripts/bash_profile_ecom ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/blt/bash_profile
 cp ~/setup-scripts/post-provision-ecom.php ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/drupal-vm/post-provision.php
