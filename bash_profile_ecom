@@ -1,4 +1,4 @@
 source ~/.profile
-source ~/.atge_vars
+source ~/.setup_vars
 
 bash /var/www/adtalem-ecom/scripts/setup-sync.sh

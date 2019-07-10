@@ -12,12 +12,12 @@ NC='\033[0m'
 echo -e "\n"
 echo -e "${LIGHTERBLUE}SELECT AN ATGE DEVELOPMENT STACK:${NC}"
 
-rm -rf ~/setup-scripts/atge_vars
+rm -rf ~/setup-scripts/.setup_vars
 
 options=("CMS-Drupal-MKTG" "CMS-Drupal-ECOM")
 select stack in "${options[@]}"; do
     SAVEDSTACK='MYSTACK="'$stack'"'
-    echo $SAVEDSTACK >> ~/setup-scripts/atge_vars;
+    echo $SAVEDSTACK >> ~/setup-scripts/.setup_vars;
   case "$stack,$REPLY" in
     CMS-Drupal-MKTG,*|*,CMS-Drupal-MKTG)     bash ~/setup-scripts/setup-local-mktg.sh; break ;;
     CMS-Drupal-ECOM,*|*,CMS-Drupal-ECOM)     bash ~/setup-scripts/setup-local-ecom.sh; break ;;
