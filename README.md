@@ -35,6 +35,17 @@ Install from your OSX terminal. Enter the commands below to install.
 
 ```js
 cd ~/
-git clone git@github.com:D41081837/setup-scripts.git
-bash setup-scripts/setup.sh
+git clone git@github.com:CMS-Drupal-Setup-Scripts/setup-scripts.git
+
+## Check Installed Software
+bash CMS-Drupal-Setup-Scripts/setup_apps.sh
+
+## Installation
+bash CMS-Drupal-Setup-Scripts/setup.sh
 ```
+
+## Refreshing AND Syncing Local Sites
+
+## Refresh sites
+bash CMS-Drupal-Setup-Scripts/refresh-sites-mktg.sh
+bash CMS-Drupal-Setup-Scripts/refresh-sites-ecom.sh

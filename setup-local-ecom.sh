@@ -22,7 +22,7 @@ read -p "$(echo -e $LIGHTERBLUE"Enter your ATGE Github access token "$NC"(from h
 echo -e "\n"
 
 SAVEDGITTOKEN='MYGITTOKEN="'$MYGITTOKEN'"'
-echo $SAVEDGITTOKEN >> ~/setup-scripts/.setup_vars
+echo $SAVEDGITTOKEN >> ~/CMS-Drupal-Setup-Scripts/.setup_vars
 
 rm -rf CMS-Drupal-ECOM
 
@@ -32,9 +32,9 @@ ssh-add ~/.ssh/"$MYPRIVATEKEY" 2> /dev/null
 
 echo -e "${BLUE}CLONING THE $MYDNUMBER/CMS-Drupal-ECOM REPOSITORY${NC}"
 git clone git@github.com:"$MYDNUMBER"/CMS-Drupal-ECOM.git
-cp ~/setup-scripts/setup-sync-ecom.sh ~/vms/CMS-Drupal-ECOM/scripts/setup-sync.sh
-cp ~/setup-scripts/bash_profile_ecom ~/vms/CMS-Drupal-ECOM/scripts/bash_profile
-cp ~/setup-scripts/local.config-ecom.yml ~/vms/CMS-Drupal-ECOM/box/local.config.yml 
+cp ~/CMS-Drupal-Setup-Scripts/setup-sync-ecom.sh ~/vms/CMS-Drupal-ECOM/scripts/setup-sync.sh
+cp ~/CMS-Drupal-Setup-Scripts/bash_profile_ecom ~/vms/CMS-Drupal-ECOM/scripts/bash_profile
+cp ~/CMS-Drupal-Setup-Scripts/local.config-ecom.yml ~/vms/CMS-Drupal-ECOM/box/local.config.yml 
 
 echo -e "${GREEN}$MYDNUMBER/CMS-Drupal-ECOM repository fork has been cloned.${NC}\n"
 sleep 3
@@ -51,17 +51,30 @@ vagrant plugin install vagrant-vbguest 2> /dev/null
 vagrant plugin install vagrant-hostsupdater 2> /dev/null
 vagrant plugin install vagrant-auto_network 2> /dev/null
 
+if ! composer_loc="$(type -p "composer")" || [[ -z $composer_loc ]]; then
 echo -e "${BLUE}\nINSTALLING COMPOSER${NC}"
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" 2> /dev/null
-php -r "if (hash_file('sha384', 'composer-setup.php') === 'a5c698ffe4b8e849a443b120cd5ba38043260d5c4023dbf93e1558871f1f07f58274fc6f4c93bcfd858c6bd0775cd8d1') { echo ''; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" 2> /dev/null
-php composer-setup.php --filename=composer 2> /dev/null
-php -r "unlink('composer-setup.php');" 2> /dev/null
+EXPECTED_SIGNATURE="$(wget -q -O - https://composer.github.io/installer.sig)"
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+ACTUAL_SIGNATURE="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
+
+if [ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]
+then
+    >&2 echo 'ERROR: Invalid installer signature'
+    rm composer-setup.php
+    exit 1
+fi
+
+php composer-setup.php --quiet
+RESULT=$?
+rm composer-setup.php
+exit $RESULT
 mkdir ~/vms/CMS-Drupal-ECOM/vendor
 mkdir ~/vms/CMS-Drupal-ECOM/vendor/bin
 mv composer ~/vms/CMS-Drupal-ECOM/vendor/bin/
 cd /usr/local/bin
 rm -rf composer
 ln -s ~/vms/CMS-Drupal-ECOM/vendor/bin/composer composer
+fi
 
 echo -e "${BLUE}\nADDING GITHUB ACCESS TOKEN${NC}"
 composer config -g github-oauth.github.com "$MYGITTOKEN"
@@ -71,15 +84,17 @@ sleep 3
 cd ~/vms/CMS-Drupal-ECOM/
 composer clearcache 2> /dev/null
 
-echo -e "${BLUE}INSTALLING LOCAL ECOM CODEBASE${NC}"
+echo -e "${BLUE}LOCAL ECOM CODEBASE INSTALL${NC}"
+read -e -p "Would you like to install your local codebase? (y/N)" choice1
+[[ "$choice1" == [Yy]* ]] && composer install --prefer-dist || exit 0
 
-cp ~/setup-scripts/.setup_vars ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/blt/setup_vars
-cp ~/setup-scripts/bash_profile_ecom ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/blt/bash_profile
-cp ~/setup-scripts/post-provision-ecom.php ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/drupal-vm/post-provision.php
+cp ~/CMS-Drupal-Setup-Scripts/.setup_vars ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/blt/setup_vars
+cp ~/CMS-Drupal-Setup-Scripts/bash_profile_ecom ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/blt/bash_profile
+cp ~/CMS-Drupal-Setup-Scripts/post-provision-ecom.php ~/vms/CMS-Drupal-ECOM/vendor/acquia/blt/scripts/drupal-vm/post-provision.php
 
 echo -e "${GREEN}Local codebase has been installed.${NC}"
 sleep 3
 
 echo -e "${BLUE}LOCAL ENVIRONMENT VM INSTALL${NC}"
 read -e -p "Would you like to install your VM? (y/N)" choice2
-[[ "$choice2" == [Yy]* ]] && bash ~/setup-scripts/setup-vm-ecom.sh || exit 0
+[[ "$choice2" == [Yy]* ]] && bash ~/CMS-Drupal-Setup-Scripts/setup-vm-ecom.sh || exit 0
