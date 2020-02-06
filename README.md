@@ -1,4 +1,5 @@
-# ATGE CMS-Drupal Setup Scripts
+![Image description](https://www.adtalem.com/themes/custom/adt_base/images/logo.png)
+# Drupal Setup Scripts
 
 Scripts that setup a local development environment on Mac OSX for of Adtalem Global Education's Drupal CMS projects.
 
@@ -22,6 +23,7 @@ pbcopy < ~/.ssh/adtalem_rsa.pub
      ###### **ADD A GITHUB KEY** 
    <a href="https://github.com/settings/keys">https://github.com/settings/keys</a>
    
+   
 4. You must create a repository fork for each stack in your ATGE Github account.
 
      ###### **THE CMS-Drupal-MKTG STACK REPO**
@@ -29,23 +31,51 @@ pbcopy < ~/.ssh/adtalem_rsa.pub
      ###### **THE CMS-Drupal-ECOM STACK REPO**  
    <a href="https://github.com/DeVryEducationGroup/CMS-Drupal-ECOM">https://github.com/DeVryEducationGroup/CMS-Drupal-ECOM</a>
 
+5. Verify that the following applications are installed on your Mac:
+
+    ###### **Homebrew**
+    ###### **Virtualbox**
+    ###### **Vagrant**
+    ###### **Pip**
+    ###### **Ansible**
+    ###### **Ruby**
+    ###### **Composer**
+    ###### **XCode Tools**
+   
+   You can verify and install these all at once after installation (see below).
+   
+   
 ## Installation
 
-Install from your OSX terminal. Enter the commands below to install.
+Install from your home directory in the OSX terminal.
+
+You will need the following info:
+
+1. The name of your SSH key pair as created above.
+2. Your Adtalem Github username (ex. D********). 
+3. Your Github Developer Access Token (from <a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a>).
+4. Your Acquia API Token and Secret (from <a href="https://cloud.acquia.com/a/profile/tokens">https://cloud.acquia.com/a/profile/tokens</a>).
+
+Enter the commands below to install.
 
 ```js
 cd ~/
 git clone git@github.com:CMS-Drupal-Setup-Scripts/setup-scripts.git
 
-## Check Installed Software
+## Check Installed Software (Optional)
 bash CMS-Drupal-Setup-Scripts/setup_apps.sh
 
 ## Installation
 bash CMS-Drupal-Setup-Scripts/setup.sh
 ```
 
-## Refreshing AND Syncing Local Sites
+## Refreshing and Syncing
 
-## Refresh sites
+Refresh and sync from your home directory in the OSX terminal. Enter the commands below.
+
+## Refresh sites by stack
+
+```js
 bash CMS-Drupal-Setup-Scripts/refresh-sites-mktg.sh
 bash CMS-Drupal-Setup-Scripts/refresh-sites-ecom.sh
+```

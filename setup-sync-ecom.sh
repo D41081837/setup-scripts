@@ -30,6 +30,9 @@ echo -e "${BLUE}\nADDING GITHUB ACCESS TOKEN TO VM${NC}"
 fi
 echo -e "${BLUE}\nREFRESHING AND SYNCING LOCAL SITES${NC}"
 
+  # Recreate site aliases.
+  blt recipes:aliases:init:acquia
+
   # Run the refresh script.
   bash scripts/refresh-local.sh
   blt adtalem:sync:all
@@ -48,5 +51,8 @@ echo -e "${BLUE}\nREFRESHING AND SYNCING LOCAL SITES${NC}"
   echo -e "${YELLOW}Completed: "`date`"${NC}"
 
 else
+  echo -e "${YELLOW}Your local development VM has already been setup.${NC}"
+  echo -e "${YELLOW}Completed: "`date`"${NC}"
+  sleep 3
   exit 0
 fi

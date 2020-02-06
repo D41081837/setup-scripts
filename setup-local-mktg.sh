@@ -19,10 +19,17 @@ cd ~/vms/
 read -p "$(echo -e $LIGHTERBLUE"Enter the name of your Acquia/Github private key "$NC"(ex. adtalem_rsa): ")" MYPRIVATEKEY
 read -p "$(echo -e $LIGHTERBLUE"Enter your ATGE Github username "$NC"(ex. D********): ")"  MYDNUMBER
 read -p "$(echo -e $LIGHTERBLUE"Enter your ATGE Github access token "$NC"(from https://github.com/settings/tokens): ")" MYGITTOKEN
+read -p "$(echo -e $LIGHTERBLUE"Enter your Acquia Cloud API Token "$NC"(from https://cloud.acquia.com/a/profile/tokens): ")" MYACQUIATOKEN
+read -p "$(echo -e $LIGHTERBLUE"Enter your Acquia Cloud API Secret "$NC"(from https://cloud.acquia.com/a/profile/tokens): ")" MYACQUIASECRET
+
 echo -e "\n"
 
 SAVEDGITTOKEN='MYGITTOKEN="'$MYGITTOKEN'"'
 echo $SAVEDGITTOKEN >> ~/CMS-Drupal-Setup-Scripts/.setup_vars
+SAVEDACQUIATOKEN='MYACQUIATOKEN="'$MYACQUIATOKEN'"'
+echo $SAVEDACQUIATOKEN >> ~/CMS-Drupal-Setup-Scripts/.setup_vars
+SAVEDACQUIASECRET='MYACQUIASECRET="'$MYACQUIASECRET'"'
+echo $SAVEDACQUIASECRET >> ~/CMS-Drupal-Setup-Scripts/.setup_vars
 
 rm -rf CMS-Drupal-MKTG
 
@@ -33,7 +40,7 @@ ssh-add ~/.ssh/"$MYPRIVATEKEY" 2> /dev/null
 echo -e "${BLUE}CLONING THE $MYDNUMBER/CMS-Drupal-MKTG REPOSITORY${NC}"
 git clone git@github.com:"$MYDNUMBER"/CMS-Drupal-MKTG.git
 cp ~/CMS-Drupal-Setup-Scripts/setup-sync-mktg.sh ~/vms/CMS-Drupal-MKTG/scripts/setup-sync.sh
-cp ~/CMS-Drupal-Setup-Scripts/bash_profile_mktg ~/vms/CMS-Drupal-MKTG/scripts/bash_profile
+cp ~/CMS-Drupal-Setup-Scripts/bash_profile ~/vms/CMS-Drupal-MKTG/scripts/bash_profile
 cp ~/CMS-Drupal-Setup-Scripts/local.config-mktg.yml ~/vms/CMS-Drupal-MKTG/box/local.config.yml
 
 echo -e "${GREEN}$MYDNUMBER/CMS-Drupal-MKTG repository fork has been cloned.${NC}\n"
@@ -42,7 +49,22 @@ sleep 3
 echo -e "${BLUE}ADDING UPSTREAM REPOSITORY${NC}"
 cd ~/vms/CMS-Drupal-MKTG/
 git remote add upstream git@github.com:DeVryEducationGroup/CMS-Drupal-MKTG.git
+git fetch upstream 2> /dev/null
 echo -e "${GREEN}DeVryEducationGroup/CMS-Drupal-MKTG has been added as an upstream repository.${NC}\n"
+sleep 3
+
+echo -e "${BLUE}UPDATING ORIGIN DEVELOP BRANCH${NC}"
+cd ~/vms/CMS-Drupal-MKTG/
+git merge upstream/develop
+git rebase origin/develop
+echo -e "${GREEN}$MYDNUMBER/CMS-Drupal-MKTG branch has been updated.${NC}\n"
+sleep 3
+
+echo -e "${BLUE}CREATING NEW LOCAL BRANCH${NC}"
+read -p "$(echo -e $LIGHTERBLUE"Enter the name of your new local branch "$NC"(DR-****, feature/new-feature): ")" MYLOCBRANCH
+git fetch
+git checkout -b $MYLOCBRANCH develop
+echo -e "${GREEN}Your new branch $MYLOCBRANCH has been created and checked out.${NC}\n"
 sleep 3
 
 echo -e "${BLUE}INSTALLING VAGRANT PLUGINS${NC}"
