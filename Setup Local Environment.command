@@ -1,3 +1,3 @@
 #!/bin/bash
 
-bash ~/CMS-Drupal-Setup-Scripts/setup-switch.sh
+bash ~/setup-scripts/setup-switch.sh

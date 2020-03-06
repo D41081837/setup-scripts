@@ -1,7 +1,22 @@
-![Image description](https://www.adtalem.com/themes/custom/adt_base/images/logo.png)
-# Drupal Setup Scripts
+![Image description](adtalem-mt-logo.png)
+
+Adtalem Drupal Setup Scripts
+====
 
 Scripts that setup a local development environment on Mac OSX for of Adtalem Global Education's Drupal CMS projects.
+
+## Requirements
+
+This package includes a software check and install script for the following:
+
+- Homebrew
+- Virtualbox
+- Vagrant
+- Pip
+- Ansible
+- Ruby
+- Composer
+- XCode Tools
 
 ## Pre-requisites
 
@@ -60,22 +75,25 @@ Enter the commands below to install.
 
 ```js
 cd ~/
-git clone git@github.com:CMS-Drupal-Setup-Scripts/setup-scripts.git
+git clone git@github.com:D41081837/setup-scripts.git
+
 
 ## Check Installed Software (Optional)
-bash CMS-Drupal-Setup-Scripts/setup_apps.sh
+bash setup-scripts/setup_apps.sh
+
 
 ## Installation
-bash CMS-Drupal-Setup-Scripts/setup.sh
+bash setup-scripts/setup.sh
 ```
 
 ## Refreshing and Syncing
 
 Refresh and sync from your home directory in the OSX terminal. Enter the commands below.
 
-## Refresh sites by stack
+## Refresh Sites by Stack
 
 ```js
-bash CMS-Drupal-Setup-Scripts/refresh-sites-mktg.sh
-bash CMS-Drupal-Setup-Scripts/refresh-sites-ecom.sh
+bash setup-scripts/refresh-sites-mktg.sh
+bash setup-scripts/refresh-sites-ecom.sh
 ```
+

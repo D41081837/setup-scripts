@@ -10,5 +10,5 @@ GRAY='\033[1;231m'
 BOLD='\033[1;0m'
 NC='\033[0m'
 
-rm -rf ~/CMS-Drupal-Setup-Scripts/.setup_vars
-bash ~/CMS-Drupal-Setup-Scripts/setup-switch.sh
+rm -rf ~/setup-scripts/.setup_vars
+bash ~/setup-scripts/setup-switch.sh
